@@ -30,11 +30,8 @@ class _ApifuntionState extends State<Apifuntion> {
 
     String movieURL;
 
-    if (apidata['homepage'] != null &&
-        (apidata['homepage'] as String).isNotEmpty) {
-      movieURL = apidata['homepage'].endsWith('/')
-          ? apidata['homepage']
-          : '${apidata['homepage']}/';
+    if (apidata['homepage'] != null && (apidata['homepage'] as String).isNotEmpty) {
+      movieURL = apidata['homepage'].endsWith('/') ? apidata['homepage'] : '${apidata['homepage']}/';
     } else {
       movieURL = '';
     }
@@ -99,8 +96,7 @@ class _ApifuntionState extends State<Apifuntion> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(Icons.error_outline_rounded,
-                                  color: Colors.red, size: 48),
+                              Icon(Icons.error_outline_rounded, color: Colors.red, size: 48),
                               Text(
                                 "An error has occurred!!\nTry again later :(",
                                 textAlign: TextAlign.center,
@@ -127,8 +123,7 @@ class _ApifuntionState extends State<Apifuntion> {
                                       builder: (context) => GestureDetector(
                                             child: Image.network(
                                               '$posterBaseUrl${data.poster}',
-                                              errorBuilder:
-                                                  (context, error, stack) {
+                                              errorBuilder: (context, error, stack) {
                                                 return Image.network(
                                                     'https://static.thenounproject.com/png/3237447-200.png',
                                                     color: Colors.white);
@@ -139,14 +134,12 @@ class _ApifuntionState extends State<Apifuntion> {
                                 },
                                 child: Image.network(
                                   '$posterBaseUrl${data.poster}',
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.52,
+                                  width: MediaQuery.of(context).size.width * 0.52,
                                   fit: BoxFit.cover,
                                   errorBuilder: (context, error, stackTrace) {
                                     return Image.network(
                                       'https://static.thenounproject.com/png/3237447-200.png',
-                                      width: MediaQuery.of(context).size.width *
-                                          0.52,
+                                      width: MediaQuery.of(context).size.width * 0.52,
                                       fit: BoxFit.cover,
                                       color: Colors.white,
                                     );
@@ -168,8 +161,7 @@ class _ApifuntionState extends State<Apifuntion> {
                                           Shadow(
                                             offset: Offset(3, 3),
                                             blurRadius: 5.0,
-                                            color:
-                                                Color.fromARGB(255, 66, 66, 66),
+                                            color: Color.fromARGB(255, 66, 66, 66),
                                           ),
                                         ],
                                         fontSize: 30,
@@ -178,8 +170,7 @@ class _ApifuntionState extends State<Apifuntion> {
                                   data.score == "-1"
                                       ? SizedBox()
                                       : Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.center,
                                           children: [
                                             Icon(
                                               Icons.star,
@@ -201,9 +192,7 @@ class _ApifuntionState extends State<Apifuntion> {
                                           'Release Date: ${data.datadelancamento}',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 17,
-                                              fontWeight: FontWeight.bold),
+                                              color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold),
                                         ),
                                   Padding(padding: EdgeInsets.all(2)),
                                   data.duracao.isNegative
@@ -212,9 +201,7 @@ class _ApifuntionState extends State<Apifuntion> {
                                           'Duration: ${data.duracao} min',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 17,
-                                              fontWeight: FontWeight.bold),
+                                              color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold),
                                         ),
                                   Padding(padding: EdgeInsets.all(2)),
                                   data.generos.isEmpty
@@ -223,9 +210,7 @@ class _ApifuntionState extends State<Apifuntion> {
                                           'Genres: ${data.generos.join(', ')}',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 17,
-                                              fontWeight: FontWeight.bold),
+                                              color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold),
                                         ),
                                   Padding(padding: EdgeInsets.all(12)),
                                   data.overview.isEmpty
@@ -234,18 +219,13 @@ class _ApifuntionState extends State<Apifuntion> {
                                           'Overview: ${data.overview}',
                                           textAlign: TextAlign.justify,
                                           style: TextStyle(
-                                              fontSize: 17,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white),
+                                              fontSize: 17, fontWeight: FontWeight.bold, color: Colors.white),
                                         ),
                                   Padding(padding: EdgeInsets.all(8)),
-                                  ((Uri.tryParse(data.sitemovie)
-                                              ?.hasAbsolutePath ??
-                                          false)
+                                  ((Uri.tryParse(data.sitemovie)?.hasAbsolutePath ?? false)
                                       ? TextButton(
                                           onPressed: () async {
-                                            await launchUrl(
-                                                Uri.parse(data.sitemovie));
+                                            await launchUrl(Uri.parse(data.sitemovie));
                                           },
                                           child: Text(
                                             'Site: ${data.sitemovie}',
@@ -260,7 +240,8 @@ class _ApifuntionState extends State<Apifuntion> {
                                   Padding(padding: EdgeInsets.all(3)),
                                   ElevatedButton.icon(
                                       style: ElevatedButton.styleFrom(
-                                          primary: Colors.green),
+                                        primary: Colors.green,
+                                      ),
                                       onPressed: () {
                                         showDialog(
                                           context: context,
@@ -289,18 +270,12 @@ class _ApifuntionState extends State<Apifuntion> {
                                             ),
                                             alignment: Alignment.center,
                                             backgroundColor: Colors.white,
-                                            actionsAlignment:
-                                                MainAxisAlignment.end,
+                                            actionsAlignment: MainAxisAlignment.end,
                                             actions: [
                                               TextButton(
-                                                style: ButtonStyle(
-                                                    alignment:
-                                                        Alignment.center),
-                                                onPressed: () =>
-                                                    Navigator.pop(context),
-                                                child: Icon(Icons.close,
-                                                    size: 30,
-                                                    color: Colors.grey),
+                                                style: ButtonStyle(alignment: Alignment.center),
+                                                onPressed: () => Navigator.pop(context),
+                                                child: Icon(Icons.close, size: 30, color: Colors.grey),
                                               ),
                                             ],
                                           ),
@@ -317,8 +292,7 @@ class _ApifuntionState extends State<Apifuntion> {
                                         ),
                                       )),
                                   ElevatedButton.icon(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.white),
+                                      style: ElevatedButton.styleFrom(primary: Colors.white),
                                       onPressed: () {
                                         showDialog(
                                           context: context,
@@ -329,8 +303,7 @@ class _ApifuntionState extends State<Apifuntion> {
                                               height: 300,
                                               width: 800,
                                               child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
+                                                mainAxisAlignment: MainAxisAlignment.center,
                                                 children: [
                                                   TextButton.icon(
                                                     icon: Icon(
@@ -348,8 +321,7 @@ class _ApifuntionState extends State<Apifuntion> {
                                                     ':( Sorry. \nPlayer not found !',
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
+                                                      fontWeight: FontWeight.bold,
                                                       fontSize: 18,
                                                       color: Colors.white,
                                                     ),
@@ -359,18 +331,12 @@ class _ApifuntionState extends State<Apifuntion> {
                                             ),
                                             alignment: Alignment.center,
                                             backgroundColor: Colors.white,
-                                            actionsAlignment:
-                                                MainAxisAlignment.end,
+                                            actionsAlignment: MainAxisAlignment.end,
                                             actions: [
                                               TextButton(
-                                                style: ButtonStyle(
-                                                    alignment:
-                                                        Alignment.center),
-                                                onPressed: () =>
-                                                    Navigator.pop(context),
-                                                child: Icon(Icons.close,
-                                                    size: 30,
-                                                    color: Colors.grey),
+                                                style: ButtonStyle(alignment: Alignment.center),
+                                                onPressed: () => Navigator.pop(context),
+                                                child: Icon(Icons.close, size: 30, color: Colors.grey),
                                               ),
                                             ],
                                           ),
@@ -386,8 +352,7 @@ class _ApifuntionState extends State<Apifuntion> {
                                         style: TextStyle(color: Colors.blue),
                                       )),
                                   ElevatedButton.icon(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.white),
+                                      style: ElevatedButton.styleFrom(primary: Colors.white),
                                       onPressed: () {
                                         showDialog(
                                           context: context,
@@ -398,8 +363,7 @@ class _ApifuntionState extends State<Apifuntion> {
                                               height: 300,
                                               width: 800,
                                               child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
+                                                mainAxisAlignment: MainAxisAlignment.center,
                                                 children: [
                                                   TextButton.icon(
                                                     icon: Icon(
@@ -417,8 +381,7 @@ class _ApifuntionState extends State<Apifuntion> {
                                                     ':( Sorry. \nPlayer not Found !',
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
+                                                      fontWeight: FontWeight.bold,
                                                       fontSize: 18,
                                                       color: Colors.white,
                                                     ),
@@ -428,15 +391,11 @@ class _ApifuntionState extends State<Apifuntion> {
                                             ),
                                             alignment: Alignment.center,
                                             backgroundColor: Colors.white,
-                                            actionsAlignment:
-                                                MainAxisAlignment.end,
+                                            actionsAlignment: MainAxisAlignment.end,
                                             actions: [
                                               TextButton(
-                                                style: ButtonStyle(
-                                                    alignment:
-                                                        Alignment.center),
-                                                onPressed: () =>
-                                                    Navigator.pop(context),
+                                                style: ButtonStyle(alignment: Alignment.center),
+                                                onPressed: () => Navigator.pop(context),
                                                 child: Icon(
                                                   Icons.close,
                                                   size: 30,
@@ -463,10 +422,7 @@ class _ApifuntionState extends State<Apifuntion> {
                             GestureDetector(
                               onTap: (() {
                                 Navigator.pop(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: ((context) =>
-                                            const HomePage())));
+                                    context, MaterialPageRoute(builder: ((context) => const HomePage())));
                               }),
                               child: Container(
                                 color: Colors.white,
@@ -474,8 +430,7 @@ class _ApifuntionState extends State<Apifuntion> {
                                 height: 60,
                                 child: Padding(
                                   padding: const EdgeInsets.only(top: 10.0),
-                                  child: Image.asset(
-                                      'assets/first_scren-removebg.png'),
+                                  child: Image.asset('assets/first_scren-removebg.png'),
                                 ),
                               ),
                             ),
